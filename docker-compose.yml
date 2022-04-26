@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    container_name: container_springboot
+    restart: always
+    networks:
+      - app-net
+    build:
+      context: hello-image/
+      dockerfile: Dockerfile
+    expose:
+      - 8080:8080
+    hostname: container_springboot_hostname
+  nginx:
+    container_name: container_nginxrm 
+    build:
+      context: nginx-image/
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - app-net
+    ports:
+      - 80:80
+    hostname: container_nginx_hostname
+    depends_on:
+      - app
+networks:
+  app-net:
+    driver: bridge
