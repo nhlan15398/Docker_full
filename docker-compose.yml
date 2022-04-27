@@ -12,7 +12,7 @@ services:
       - 8080:8080
     hostname: container_springboot_hostname
   nginx:
-    container_name: container_nginxrm 
+    container_name: container_nginx 
     build:
       context: nginx-image/
       dockerfile: Dockerfile
